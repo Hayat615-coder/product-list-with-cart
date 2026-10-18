@@ -24,19 +24,19 @@ const OrderConfirmedComponent = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 sm:items-center sm:p-4"
       role="presentation"
     >
       <section
         role="dialog"
         aria-modal="true"
         aria-labelledby="order-confirmed-title"
-        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl bg-white p-6 shadow-xl sm:p-8"
+        className="max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-t-2xl bg-white p-6 shadow-xl sm:rounded-xl sm:p-8"
       >
         <img src={confirmedIcon} alt="" className="mb-4 h-12 w-12" />
         <h2
           id="order-confirmed-title"
-          className="text-3xl font-bold text-[#260f08]"
+          className="max-w-[15rem] text-4xl leading-tight font-bold text-[#260f08] sm:max-w-none sm:text-3xl"
         >
           Order Confirmed
         </h2>
@@ -44,7 +44,7 @@ const OrderConfirmedComponent = ({
           We hope you enjoy your food!
         </p>
 
-        <ul className="mt-6 divide-y rounded-lg bg-[#fcf8f6] px-4">
+        <ul className="mt-6 divide-y rounded-lg bg-[#fcf8f6] px-4 sm:px-5">
           {items.map((item) => {
             const unitPrice = Number(item.price.replace("$", ""));
 
