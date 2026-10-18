@@ -1,75 +1,85 @@
-# React + TypeScript + Vite
+# Dessert Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive dessert menu with an interactive shopping cart. Browse the desserts, adjust quantities, review your order, and confirm it in a summary dialog.
 
-Currently, two official plugins are available:
+## Designs
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Desktop
 
-## React Compiler
+<img src="./src/assets/image-1792314415853.png" alt="Dessert shop desktop design with the order confirmation dialog open" width="800">
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Mobile
 
-## Expanding the ESLint configuration
+<img src="./src/assets/image-1792314428806.png" alt="Dessert shop mobile design showing the dessert list and empty cart" width="320" >
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Get started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Requirements
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js (a current LTS release)
+- pnpm
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Install and run
 
+```bash
+pnpm install
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Open the local URL printed in the terminal by Vite.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Try the app
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- [ ] Select **Add to Cart** on a dessert.
+- [ ] Use the `+` and `−` controls to change its quantity.
+- [ ] Check that the cart count and subtotal update.
+- [ ] Remove a dessert with the remove button in the cart.
+- [ ] Select **Confirm Order** to open the order summary.
+- [ ] Select **Start New Order** to clear the cart and begin again.
+- [ ] Resize the browser to see the layout adapt to mobile and desktop.
 
+<details>
+<summary>How cart totals are calculated</summary>
+
+Each selected dessert appears in the cart with its quantity, unit price, and line subtotal. The order total is the sum of all line subtotals.
+
+The current cart is held in app state. It is cleared when **Start New Order** is selected and is not saved after refreshing the page.
+
+</details>
+
+## Useful commands
+
+| Command        | What it does                             |
+| -------------- | ---------------------------------------- |
+| `pnpm dev`     | Start the local development server       |
+| `pnpm build`   | Type-check and create a production build |
+| `pnpm lint`    | Run ESLint                               |
+| `pnpm preview` | Preview the production build locally     |
+
+## Built with
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+
+## Project layout
+
+```text
+src/
+├── components/
+│   ├── Add_tocart_component.tsx
+│   ├── Product_list_component.tsx
+│   ├── Your_cart_component.tsx
+│   └── order_confirmed_component.tsx
+├── assets/
+└── info.tsx
 ```
+
+Product names, prices, and image references are defined in `src/info.tsx`. The shared cart state is managed in `src/App.tsx` and passed to the product list, cart, and order confirmation dialog.
+
+## Making changes
+
+1. Update product data in `src/info.tsx`.
+2. Change cart controls or the product-card layout in `src/components/`.
+3. Run `pnpm build` and `pnpm lint` before sharing your changes.
